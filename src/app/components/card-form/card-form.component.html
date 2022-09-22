@@ -1,0 +1,91 @@
+<div class="card-form">
+    <form [formGroup]="cardForm" (submit)="submit()">
+        <div class="card-form__wrapper">
+            <div class="card-form__controls">
+                <div class="card-form__text-field text-field">
+                    <label class="text-field__label" for="name">Cardholder Name</label>
+                    <input
+                        formControlName="name"
+                        placeholder="e.g. Jane Appleseed" 
+                        id="name" 
+                        class="text-field__input" 
+                        type="text">
+                    <div class="text-field__error-message" *ngIf="hasError(name)">
+                        <span>Field is Required</span>
+                    </div>
+                </div>
+                
+                <div class="card-form__text-field text-field">
+                    <label class="text-field__label" for="number">Card Number</label>
+                    <input
+                        formControlName="number"
+                        placeholder="e.g. 1234 5678 9123 0000" 
+                        id="number" 
+                        class="text-field__input" 
+                        type="text">
+                    <div class="text-field__error-message" *ngIf="hasError(number)">
+                        <span *ngIf="number.errors?.['required']">Card number is Required</span>
+                        <span *ngIf="number.errors?.['pattern']">Wrong format, numbers only</span>
+                    </div>
+                </div>
+            </div>
+            <div  class="card-form__controls card-form__controls--inline">
+                <div class="text-field">
+                    <label class="text-field__label" for="month">Exp. Date</label>
+                    <input
+                        formControlName="month"
+                        placeholder="MM"
+                        id="month"
+                        class="text-field__input text-field__input--part" 
+                        type="text">
+
+                    <div class="text-field__error-message" *ngIf="hasError(month)">
+                        <span *ngIf="month.errors?.['required']">Month is required</span>
+                        <span *ngIf="number.errors?.['pattern']">Wrong format, numbers only</span>
+                        <span *ngIf="month.errors?.['min']">Min value: 1</span>
+                        <span *ngIf="month.errors?.['max']">Min value: 12</span>
+                        <span *ngIf="month.errors?.['minLength']">Min two characters</span>
+                        <span *ngIf="month.errors?.['maxLength']">Max two characters</span>
+                    </div>
+                </div>
+                <div class="text-field">
+                    <label class="text-field__label" for="year"> (MM/YY) </label>
+                    <input
+                        formControlName="year"
+                        id="year"
+                        placeholder="YY" 
+                        class="text-field__input text-field__input--part" 
+                        type="text">
+                        <div class="text-field__error-message" *ngIf="hasError(year)">
+                            <span *ngIf="year.errors?.['required']">Year is required</span>
+                            <span *ngIf="number.errors?.['pattern']">Wrong format, numbers only</span>
+                            <span *ngIf="year.errors?.['minLength']">Min two characters</span>
+                            <span *ngIf="year.errors?.['maxLength']">Max two characters</span>
+                        </div>
+                </div>
+                <div  class="text-field">
+                    <label class="text-field__label" for="cvc">CVC</label>
+                    <input
+                        formControlName="cvc"
+                        placeholder="e.g. 123" 
+                        id="cvc" 
+                        class="text-field__input text-field__input--part" 
+                        type="text">
+                        <div class="text-field__error-message" *ngIf="hasError(cvc)">
+                            <span *ngIf="cvc.errors?.['required']">CVC is required</span>
+                            <span *ngIf="number.errors?.['pattern']">Wrong format, numbers only</span>
+                            <span *ngIf="cvc.errors?.['minLength']">Min three characters</span>
+                            <span *ngIf="cvc.errors?.['maxLength']">Max three characters</span>
+                        </div>
+                </div>
+            </div>
+            <div class="card-form__submit">
+                <button class="button button--block">
+                    <span class="button__text">
+                        Confirm
+                    </span>
+                </button>
+            </div>
+        </div>   
+    </form>
+</div>
