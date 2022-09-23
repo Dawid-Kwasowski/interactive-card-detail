@@ -10,6 +10,7 @@
         height: 200px;
         background-image: url('../assets/images/bg-main-mobile.png');  
         background-size: cover;
+        margin-bottom: 40px;
         @media (min-width:1024px) {
             min-height: 100vh;
             width: 30%;

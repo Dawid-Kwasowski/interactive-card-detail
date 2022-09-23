@@ -10,7 +10,9 @@ export class CardFormComponent implements OnInit {
 
   public cardForm: any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
     this.cardForm = this.formBuilder.group({
       name: ['', Validators.required],
       number: [null, [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
@@ -34,7 +36,7 @@ export class CardFormComponent implements OnInit {
         Validators.maxLength(3),
         Validators.pattern(/^[0-9]\d*$/)
       ]]
-  }) 
+    }) 
   }
 
   public submit() {
@@ -43,10 +45,6 @@ export class CardFormComponent implements OnInit {
 
   public hasError(field: AbstractControl): boolean {
     return field.invalid && (field.dirty || field.touched);
-  }
-
-
-  ngOnInit(): void {
   }
 
   get name(): AbstractControl {return this.cardForm.get('name');}
